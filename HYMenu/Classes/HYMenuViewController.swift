@@ -11,9 +11,9 @@ public class HYMenuViewController :UIViewController{
     
     var menuViewControllerWidthConstraint : NSLayoutConstraint!
     
-    let menuViewController = MenuViewController()
+    var menuViewController = UIViewController()
     
-    let contentViewController = UINavigationController()
+    var contentViewController = UIViewController()
     
     public var menuWidth = 150.0{
         didSet{
@@ -35,25 +35,31 @@ public class HYMenuViewController :UIViewController{
         
     }
     func setup(){
-        view.backgroundColor = .red
-        addChild(contentViewController)
-        view.addSubview(contentViewController.view)
-        contentViewController.view.translatesAutoresizingMaskIntoConstraints = false
-        let contentleading = contentViewController.view.leadingAnchor.constraint(equalTo: view.leadingAnchor)
-        let contenttrailing = contentViewController.view.trailingAnchor.constraint(equalTo: view.trailingAnchor)
-        let contentbottom = contentViewController.view.bottomAnchor.constraint(equalTo: view.bottomAnchor)
-        let contenttop = contentViewController.view.topAnchor.constraint(equalTo: view.topAnchor)
-        view.addConstraints([contenttop,contentbottom,contentleading,contenttrailing])
-        
         let edgeGesture = UIScreenEdgePanGestureRecognizer(target: self, action: #selector(handleGesture(gesture:)))
         edgeGesture.edges = .left
         view.addGestureRecognizer(edgeGesture)
-        let panGesture = UIPanGestureRecognizer(target: self, action: #selector(handleGesture(gesture:)))
-        menuViewController.view.addGestureRecognizer(panGesture)
-        menuViewController.view.backgroundColor = .white
 //        addMenuViewController()
         menuViewControllerLeadingConstraint = menuViewController.view.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: -menuWidth)
         menuViewControllerWidthConstraint = menuViewController.view.widthAnchor.constraint(equalToConstant: menuWidth)
+    }
+    public func setupMenuViewController(menuViewController:UIViewController){
+        self.menuViewController = menuViewController
+        let panGesture = UIPanGestureRecognizer(target: self, action: #selector(handleGesture(gesture:)))
+        menuViewController.view.addGestureRecognizer(panGesture)
+    }
+    
+    
+    public func setupContentViewController(contentViewController:UIViewController){
+        self.contentViewController = contentViewController
+        addChild(self.contentViewController)
+        view.addSubview(self.contentViewController.view)
+        self.contentViewController.view.translatesAutoresizingMaskIntoConstraints = false
+        let contentleading = self.contentViewController.view.leadingAnchor.constraint(equalTo: view.leadingAnchor)
+        let contenttrailing = self.contentViewController.view.trailingAnchor.constraint(equalTo: view.trailingAnchor)
+        let contentbottom = self.contentViewController.view.bottomAnchor.constraint(equalTo: view.bottomAnchor)
+        let contenttop = self.contentViewController.view.topAnchor.constraint(equalTo: view.topAnchor)
+        view.addConstraints([contenttop,contentbottom,contentleading,contenttrailing])
+        
     }
     
     func addMenuViewController(){
@@ -79,9 +85,6 @@ public class HYMenuViewController :UIViewController{
         fatalError("init(coder:) has not been implemented")
     }
     
-    public func setContentViewController(viewController:UIViewController, animated: Bool){
-        contentViewController.setViewControllers([viewController], animated: animated)
-    }
     public func slideMenu(open:Bool){
         self.isOpen = open
         if open{

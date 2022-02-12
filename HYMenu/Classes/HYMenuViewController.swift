@@ -34,6 +34,11 @@ public class HYMenuViewController :UIViewController{
         setup()
         
     }
+    required init?(coder: NSCoder) {
+        super.init(coder: coder)
+        setup()
+    }
+    
     func setup(){
         let edgeGesture = UIScreenEdgePanGestureRecognizer(target: self, action: #selector(handleGesture(gesture:)))
         edgeGesture.edges = .left
@@ -81,9 +86,6 @@ public class HYMenuViewController :UIViewController{
         view.addConstraints([menuViewControllerLeadingConstraint,bottom,top,menuViewControllerWidthConstraint])
     }
     
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
     
     public func slideMenu(open:Bool){
         self.isOpen = open

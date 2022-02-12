@@ -36,7 +36,7 @@ public class HYMenuViewController :UIViewController{
     }
     func setup(){
         view.backgroundColor = .red
-        addChildViewController(contentViewController)
+        addChild(contentViewController)
         view.addSubview(contentViewController.view)
         contentViewController.view.translatesAutoresizingMaskIntoConstraints = false
         let contentleading = contentViewController.view.leadingAnchor.constraint(equalTo: view.leadingAnchor)
@@ -60,9 +60,9 @@ public class HYMenuViewController :UIViewController{
         if view.subviews.contains(menuViewController.view){
             return
         }
-        addChildViewController(menuViewController)
+        addChild(menuViewController)
         view.addSubview(menuViewController.view)
-        menuViewController.didMove(toParentViewController: self)
+        menuViewController.didMove(toParent: self)
         setupMenuViewControllerLayout()
     }
     func setupMenuViewControllerLayout(){
@@ -98,8 +98,8 @@ public class HYMenuViewController :UIViewController{
                 self.view.layoutIfNeeded()
             }completion: { complete in
                 self.menuViewController.view.removeFromSuperview()
-                self.menuViewController.willMove(toParentViewController: nil)
-                self.menuViewController.removeFromParentViewController()
+                self.menuViewController.willMove(toParent: nil)
+                self.menuViewController.removeFromParent()
             }
         }
     }

@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'HYMenu'
-  s.version          = '1.0.3'
+  s.version          = '1.0.4'
   s.summary          = 'A short description of HYMenu.'
 
 # This description is used to generate tags and improve search results.
@@ -27,11 +27,11 @@ TODO: Add long description of the pod here.
   s.author           = { 'HENRY' => 'hg45hg2000@me.com' }
   s.source           = { :git => 'https://github.com/hg45hg2000/HYMenu.git', :tag => s.version.to_s }
   # s.social_media_url = 'https://twitter.com/<TWITTER_USERNAME>'
-
+  
   s.ios.deployment_target = '9.0'
 
   s.source_files = 'HYMenu/Classes/**/*'
-  
+  s.swift_versions = '5.0'
   # s.resource_bundles = {
   #   'HYMenu' => ['HYMenu/Assets/*.png']
   # }

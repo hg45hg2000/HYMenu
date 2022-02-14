@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'HYMenu'
-  s.version          = '1.0.8'
+  s.version          = '1.0.9'
   s.summary          = 'Elegant Side Menu in Swift '
 
 # This description is used to generate tags and improve search results.

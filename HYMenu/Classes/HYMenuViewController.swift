@@ -7,22 +7,36 @@
 import UIKit
 public class HYMenuViewController :UIViewController{
     
-    var menuViewControllerLeadingConstraint :NSLayoutConstraint!
+    var leftViewLeadingConstraint :NSLayoutConstraint!
     
-    var menuViewControllerWidthConstraint : NSLayoutConstraint!
+    var leftViewControllerWidthConstraint : NSLayoutConstraint!
     
-    var menuViewController = UIViewController()
+    var rightViewLeadingConstraint :NSLayoutConstraint!
     
-    var contentViewController = UIViewController()
+    var rightViewControllerWidthConstraint : NSLayoutConstraint!
     
-    public var menuWidth = 150.0{
+    var leftViewController : UIViewController? = nil
+    
+    var centerViewController : UIViewController? = nil
+    
+    var rightViewController : UIViewController? = nil
+    
+    let mannger = HYMenuMannger()
+    
+    public var leftWidth : CGFloat = 150.0{
         didSet{
-            menuViewControllerWidthConstraint.constant = menuWidth
-            menuViewControllerLeadingConstraint.constant = -menuWidth
+            leftViewControllerWidthConstraint.constant = leftWidth
+            leftViewLeadingConstraint.constant = -leftWidth
         }
     }
+    public var rightWidth : CGFloat = 150.0{
+        didSet{
+            rightViewLeadingConstraint.constant = 0
+            rightViewControllerWidthConstraint.constant = -leftWidth
+        }
+    }
+    public var menuSlideVelocity = 0.3
     
-    public private(set) var isOpen :Bool = false
     
     public init() {
         super.init(nibName: nil, bundle: nil)
@@ -40,91 +54,167 @@ public class HYMenuViewController :UIViewController{
     }
     
     func setup(){
-        let edgeGesture = UIScreenEdgePanGestureRecognizer(target: self, action: #selector(handleGesture(gesture:)))
-        edgeGesture.edges = .left
-        view.addGestureRecognizer(edgeGesture)
-//        addMenuViewController()
-        menuViewControllerLeadingConstraint = menuViewController.view.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: -menuWidth)
-        menuViewControllerWidthConstraint = menuViewController.view.widthAnchor.constraint(equalToConstant: menuWidth)
+
+        setupNotification()
     }
-    public func setupMenuViewController(menuViewController:UIViewController){
-        self.menuViewController = menuViewController
-        let panGesture = UIPanGestureRecognizer(target: self, action: #selector(handleGesture(gesture:)))
-        menuViewController.view.addGestureRecognizer(panGesture)
+    func setupNotification(){
+        NotificationCenter.default.addObserver(self, selector: #selector(addLeftViewController), name: HYMenuManngerAddLeftViewName, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(addRightViewController), name: HYMenuManngerAddRightViewName, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(openMenu), name: HYMenuManngerOpenMenuName, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(closeMenu), name: HYMenuManngerCloseMenuName, object: nil)
     }
     
+    @discardableResult
+    public func setupLeft(_ menuViewController:UIViewController)->HYMenuViewController{
+        self.leftViewController = menuViewController
+        menuViewController.view.translatesAutoresizingMaskIntoConstraints = false
+        mannger.setupPanGesture(edge:.left,view: self.leftViewController?.view)
+        mannger.setupEdgeGesture(edge: .left, view: view)
+        leftViewLeadingConstraint = leftViewController?.view.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: -leftWidth)
+        leftViewControllerWidthConstraint = leftViewController?.view.widthAnchor.constraint(equalToConstant: leftWidth)
+        return self
+    }
+    @discardableResult
+    public func setupRight(_ menuViewController:UIViewController)->HYMenuViewController{
+        self.rightViewController = menuViewController
+        menuViewController.view.translatesAutoresizingMaskIntoConstraints = false
+        mannger.setupPanGesture(edge:.right,view: self.rightViewController?.view)
+        mannger.setupEdgeGesture(edge: .right, view: view)
+        rightViewLeadingConstraint = rightViewController?.view.leadingAnchor.constraint(equalTo: view.trailingAnchor, constant: leftWidth)
+        rightViewControllerWidthConstraint = rightViewController?.view.widthAnchor.constraint(equalToConstant: leftWidth)
+        return self
+    }
     
-    public func setupContentViewController(contentViewController:UIViewController){
-        self.contentViewController = contentViewController
-        addChild(self.contentViewController)
-        view.addSubview(self.contentViewController.view)
-        self.contentViewController.view.translatesAutoresizingMaskIntoConstraints = false
-        let contentleading = self.contentViewController.view.leadingAnchor.constraint(equalTo: view.leadingAnchor)
-        let contenttrailing = self.contentViewController.view.trailingAnchor.constraint(equalTo: view.trailingAnchor)
-        let contentbottom = self.contentViewController.view.bottomAnchor.constraint(equalTo: view.bottomAnchor)
-        let contenttop = self.contentViewController.view.topAnchor.constraint(equalTo: view.topAnchor)
+    @discardableResult
+    public func setupCenter(_ contentViewController:UIViewController)->HYMenuViewController{
+        self.centerViewController = contentViewController
+        guard let centerViewController = centerViewController else {
+            return self
+        }
+
+        addChild(centerViewController)
+        view.addSubview(centerViewController.view)
+        centerViewController.view.translatesAutoresizingMaskIntoConstraints = false
+        let contentleading = centerViewController.view.leadingAnchor.constraint(equalTo: view.leadingAnchor)
+        let contenttrailing = centerViewController.view.trailingAnchor.constraint(equalTo: view.trailingAnchor)
+        let contentbottom = centerViewController.view.bottomAnchor.constraint(equalTo: view.bottomAnchor)
+        let contenttop = centerViewController.view.topAnchor.constraint(equalTo: view.topAnchor)
         view.addConstraints([contenttop,contentbottom,contentleading,contenttrailing])
-        
+        return self
     }
     
-    func addMenuViewController(){
-        if view.subviews.contains(menuViewController.view){
+    @objc func addLeftViewController(){
+        guard let leftViewController = leftViewController else {
             return
         }
-        addChild(menuViewController)
-        view.addSubview(menuViewController.view)
-        menuViewController.didMove(toParent: self)
-        setupMenuViewControllerLayout()
+        if view.subviews.contains(leftViewController.view){
+            return
+        }
+        addChild(leftViewController)
+        view.addSubview(leftViewController.view)
+        leftViewController.didMove(toParent: self)
+        setupLeftMenuViewControllerLayout()
     }
-    func setupMenuViewControllerLayout(){
-        menuViewController.view.translatesAutoresizingMaskIntoConstraints = false
-        menuViewControllerLeadingConstraint = menuViewController.view.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: -menuWidth)
-        let bottom = menuViewController.view.bottomAnchor.constraint(equalTo: view.bottomAnchor)
-        let top = menuViewController.view.topAnchor.constraint(equalTo: view.topAnchor)
+    @objc func addRightViewController(){
+        guard let rightViewController = rightViewController else {
+            return
+        }
+        if view.subviews.contains(rightViewController.view){
+            return
+        }
+        addChild(rightViewController)
+        view.addSubview(rightViewController.view)
+        rightViewController.didMove(toParent: self)
+        setupRightMenuViewControllerLayout()
+    }
+    
+    func setupLeftMenuViewControllerLayout(){
+        guard let leftViewController = leftViewController else {
+            return
+        }
+        leftViewLeadingConstraint = leftViewController.view.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: -leftWidth)
+        let bottom = leftViewController.view.bottomAnchor.constraint(equalTo: view.bottomAnchor)
+        let top = leftViewController.view.topAnchor.constraint(equalTo: view.topAnchor)
         
-        menuViewControllerWidthConstraint = menuViewController.view.widthAnchor.constraint(equalToConstant: menuWidth)
-        view.addConstraints([menuViewControllerLeadingConstraint,bottom,top,menuViewControllerWidthConstraint])
+        leftViewControllerWidthConstraint = leftViewController.view.widthAnchor.constraint(equalToConstant: leftWidth)
+        
+        mannger.leftViewLeadingConstraint = leftViewLeadingConstraint
+        mannger.leftViewControllerWidthConstraint = leftViewControllerWidthConstraint
+        view.addConstraints([leftViewLeadingConstraint,bottom,top,leftViewControllerWidthConstraint])
+    }
+    func setupRightMenuViewControllerLayout(){
+        guard let rightViewController = rightViewController else {
+            return
+        }
+        rightViewLeadingConstraint = rightViewController.view.leadingAnchor.constraint(equalTo: view.trailingAnchor, constant: 0)
+        let bottom = rightViewController.view.bottomAnchor.constraint(equalTo: view.bottomAnchor)
+        let top = rightViewController.view.topAnchor.constraint(equalTo: view.topAnchor)
+
+        rightViewControllerWidthConstraint = rightViewController.view.widthAnchor.constraint(equalToConstant: rightWidth)
+
+        mannger.rightViewLeadingConstraint = rightViewLeadingConstraint
+        mannger.rightViewControllerWidthConstraint = rightViewControllerWidthConstraint
+        view.addConstraints([rightViewLeadingConstraint,bottom,top,rightViewControllerWidthConstraint])
     }
     
-    
-    public func slideMenu(open:Bool){
-        self.isOpen = open
-        if open{
-            addMenuViewController()
-            UIView.animate(withDuration: 0.3) {
-                self.menuViewControllerLeadingConstraint.constant = 0
+    @objc  func openMenu(notification: Notification){
+        guard let edges = notification.object as? SlideSide else{
+            return
+        }
+
+        addLeftViewController()
+        openSideMenu(edges: edges)
+    }
+    @objc func closeMenu(notification: Notification){
+        guard let edges = notification.object as? SlideSide else{
+            return
+        }
+        closeSideMenu(edges: edges)
+        
+    }
+    public func openSideMenu(edges:SlideSide){
+        switch edges {
+        case .left:
+            UIView.animate(withDuration: menuSlideVelocity) {
+                self.leftViewLeadingConstraint.constant = 0
                 self.view.layoutIfNeeded()
-            } completion: { complete in
-                
             }
-        }else{
-            UIView.animate(withDuration: 0.3) {
-                self.menuViewControllerLeadingConstraint.constant = -self.menuWidth
+        case .right:
+            UIView.animate(withDuration: menuSlideVelocity) {
+                self.rightViewLeadingConstraint.constant = -self.rightViewControllerWidthConstraint.constant
                 self.view.layoutIfNeeded()
-            }completion: { complete in
-                self.menuViewController.view.removeFromSuperview()
-                self.menuViewController.willMove(toParent: nil)
-                self.menuViewController.removeFromParent()
             }
+            break
         }
     }
-    @objc func handleGesture(gesture: UIPanGestureRecognizer){
-        addMenuViewController()
-        let menuView = gesture.view
-        let transaltion = gesture.translation(in: menuView)
-        let x = menuViewControllerLeadingConstraint.constant + transaltion.x
-        switch gesture.state{
-        case .changed:
-            if x > 0 {
-                break
+    public func closeSideMenu(edges:SlideSide){
+        switch edges {
+        case .left:
+            UIView.animate(withDuration: menuSlideVelocity) {
+                self.leftViewLeadingConstraint.constant = -self.leftWidth
+                self.view.layoutIfNeeded()
+            }completion: { complete in
+                guard let leftViewController = self.leftViewController else {
+                    return
+                }
+                leftViewController.view.removeFromSuperview()
+                leftViewController.willMove(toParent: nil)
+                leftViewController.removeFromParent()
             }
-            else{
-                menuViewControllerLeadingConstraint.constant += transaltion.x
+        case .right:
+            UIView.animate(withDuration: menuSlideVelocity) {
+                self.rightViewLeadingConstraint.constant = 0
+                self.view.layoutIfNeeded()
+            }completion: { complete in
+                guard let rightViewController = self.rightViewController else {
+                    return
+                }
+
+                rightViewController.view.removeFromSuperview()
+                rightViewController.willMove(toParent: nil)
+                rightViewController.removeFromParent()
             }
-            gesture.setTranslation(CGPoint.zero, in: menuView)
-        case .ended:
-            slideMenu(open: menuViewControllerLeadingConstraint.constant > -menuWidth / 2)
-        default:break
+            break
         }
     }
 }

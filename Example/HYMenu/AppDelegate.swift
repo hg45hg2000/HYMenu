@@ -19,11 +19,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         window = UIWindow(frame: UIScreen.main.bounds)
         let nav = UINavigationController()
         nav.view.backgroundColor = .blue
-        let table = UITableViewController()
-        table.view.backgroundColor = .brown
+        let left = UIViewController()
+        left.view.backgroundColor = .brown
+        let right = UIViewController()
+        right.view.backgroundColor = .red
         let menu = HYMenuViewController()
-        menu.setupMenuViewController(menuViewController: table)
-        menu.setupContentViewController(contentViewController: nav)
+        menu.setupLeft(left).setupCenter(nav).setupRight(right)
         window?.rootViewController = menu
         window?.makeKeyAndVisible()
         return true

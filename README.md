@@ -9,15 +9,6 @@
 
 To run the example project, clone the repo, and run `pod install` from the Example directory first.
 
-## Usage
-```Swift
-        let menu = HYMenuViewController()
-        let viewController1 = UIViewController()
-        menu.setupMenuViewController(menuViewController: viewController1)
-        let viewController2 = UIViewController()
-        menu.setupContentViewController(contentViewController: viewController2)
-        window?.rootViewController = menu
-```
 
 ## Requirements
 
@@ -29,7 +20,34 @@ it, simply add the following line to your Podfile:
 ```ruby
 pod 'HYMenu'
 ```
+## Usage
+First:
+```Swift 
+import HYMenu
+```
 
+```Swift
+        let nav = UINavigationController()
+        nav.view.backgroundColor = .blue
+        let left = UIViewController()
+        left.view.backgroundColor = .brown
+        let right = UIViewController()
+        right.view.backgroundColor = .red
+        let menu = HYMenuViewController()
+        menu.setupLeft(left).setupCenter(nav).setupRight(right)
+        window?.rootViewController = menu
+        window?.makeKeyAndVisible()
+            
+```
+HYMenuViewController Support Following
+```Swift
+        var menuSlideVelocity = 0.3
+        var leftWidth : CGFloat = 150.0
+        var rightWidth : CGFloat = 150.0
+            
+        func openSideMenu(edges:SlideSide)
+        func closeSideMenu(edges:SlideSide)
+```
 ## Author
 
 HENRY, hg45hg2000@me.com

@@ -10,11 +10,14 @@
 To run the example project, clone the repo, and run `pod install` from the Example directory first.
 
 ## Usage
+```Swift
         let menu = HYMenuViewController()
-        menu.setupMenuViewController(menuViewController: viewController)
-        menu.setupContentViewController(contentViewController: viewController)
+        let viewController1 = UIViewController()
+        menu.setupMenuViewController(menuViewController: viewController1)
+        let viewController2 = UIViewController()
+        menu.setupContentViewController(contentViewController: viewController2)
         window?.rootViewController = menu
-
+```
 
 ## Requirements
 

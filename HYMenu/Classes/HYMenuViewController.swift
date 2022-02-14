@@ -114,7 +114,6 @@ public class HYMenuViewController :UIViewController{
         let transaltion = gesture.translation(in: menuView)
         let x = menuViewControllerLeadingConstraint.constant + transaltion.x
         switch gesture.state{
-            
         case .changed:
             if x > 0 {
                 break

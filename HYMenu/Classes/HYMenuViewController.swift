@@ -23,6 +23,8 @@ public class HYMenuViewController :UIViewController{
     
     let mannger = HYMenuMannger()
     
+    public static let shared = HYMenuViewController()
+    
     public var leftWidth : CGFloat = 150.0{
         didSet{
             leftViewControllerWidthConstraint.constant = leftWidth
@@ -80,8 +82,8 @@ public class HYMenuViewController :UIViewController{
         menuViewController.view.translatesAutoresizingMaskIntoConstraints = false
         mannger.setupPanGesture(edge:.right,view: self.rightViewController?.view)
         mannger.setupEdgeGesture(edge: .right, view: view)
-        rightViewLeadingConstraint = rightViewController?.view.leadingAnchor.constraint(equalTo: view.trailingAnchor, constant: leftWidth)
-        rightViewControllerWidthConstraint = rightViewController?.view.widthAnchor.constraint(equalToConstant: leftWidth)
+        rightViewLeadingConstraint = rightViewController?.view.leadingAnchor.constraint(equalTo: view.trailingAnchor, constant: rightWidth)
+        rightViewControllerWidthConstraint = rightViewController?.view.widthAnchor.constraint(equalToConstant: rightWidth)
         return self
     }
     
@@ -113,6 +115,7 @@ public class HYMenuViewController :UIViewController{
         addChild(leftViewController)
         view.addSubview(leftViewController.view)
         leftViewController.didMove(toParent: self)
+        leftViewController.view.frame = CGRect(x: -leftWidth, y: 0, width: leftWidth, height: view.frame.height)
         setupLeftMenuViewControllerLayout()
     }
     @objc func addRightViewController(){
@@ -125,6 +128,7 @@ public class HYMenuViewController :UIViewController{
         addChild(rightViewController)
         view.addSubview(rightViewController.view)
         rightViewController.didMove(toParent: self)
+        rightViewController.view.frame = CGRect(x: view.frame.width + rightWidth, y: 0, width: rightWidth, height: view.frame.height)
         setupRightMenuViewControllerLayout()
     }
     
@@ -132,6 +136,7 @@ public class HYMenuViewController :UIViewController{
         guard let leftViewController = leftViewController else {
             return
         }
+        leftViewController.view.translatesAutoresizingMaskIntoConstraints = false
         leftViewLeadingConstraint = leftViewController.view.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: -leftWidth)
         let bottom = leftViewController.view.bottomAnchor.constraint(equalTo: view.bottomAnchor)
         let top = leftViewController.view.topAnchor.constraint(equalTo: view.topAnchor)
@@ -146,6 +151,7 @@ public class HYMenuViewController :UIViewController{
         guard let rightViewController = rightViewController else {
             return
         }
+        rightViewController.view.translatesAutoresizingMaskIntoConstraints = false
         rightViewLeadingConstraint = rightViewController.view.leadingAnchor.constraint(equalTo: view.trailingAnchor, constant: 0)
         let bottom = rightViewController.view.bottomAnchor.constraint(equalTo: view.bottomAnchor)
         let top = rightViewController.view.topAnchor.constraint(equalTo: view.topAnchor)
@@ -162,7 +168,6 @@ public class HYMenuViewController :UIViewController{
             return
         }
 
-        addLeftViewController()
         openSideMenu(edges: edges)
     }
     @objc func closeMenu(notification: Notification){
@@ -175,11 +180,13 @@ public class HYMenuViewController :UIViewController{
     public func openSideMenu(edges:SlideSide){
         switch edges {
         case .left:
+            addLeftViewController()
             UIView.animate(withDuration: menuSlideVelocity) {
                 self.leftViewLeadingConstraint.constant = 0
                 self.view.layoutIfNeeded()
             }
         case .right:
+            addRightViewController()
             UIView.animate(withDuration: menuSlideVelocity) {
                 self.rightViewLeadingConstraint.constant = -self.rightViewControllerWidthConstraint.constant
                 self.view.layoutIfNeeded()

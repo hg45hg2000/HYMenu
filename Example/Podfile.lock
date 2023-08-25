@@ -1,5 +1,5 @@
 PODS:
-  - HYMenu (0.1.0)
+  - HYMenu (1.0.9)
 
 DEPENDENCIES:
   - HYMenu (from `../`)
@@ -9,8 +9,8 @@ EXTERNAL SOURCES:
     :path: "../"
 
 SPEC CHECKSUMS:
-  HYMenu: eda4d312c31d9c56cff4e478137fa59f28b0bfeb
+  HYMenu: bdee60ddc814336e64135f93a855cc153f13ade0
 
 PODFILE CHECKSUM: 60bc6d14236df662629718984a11fce11f04add8
 
-COCOAPODS: 1.11.2
+COCOAPODS: 1.12.1

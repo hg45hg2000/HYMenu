@@ -9,7 +9,8 @@
 
 To run the example project, clone the repo, and run `pod install` from the Example directory first.
 
-
+## Preview 
+![](https://github.com/hg45hg2000/HYMenu/blob/master/menu.gif)
 ## Requirements
 
 ## Installation

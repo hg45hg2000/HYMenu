@@ -17,13 +17,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         window = UIWindow(frame: UIScreen.main.bounds)
-        let nav = UINavigationController()
+        let nav = UINavigationController(rootViewController: ViewController())
         nav.view.backgroundColor = .blue
         let left = UIViewController()
         left.view.backgroundColor = .brown
         let right = UIViewController()
         right.view.backgroundColor = .red
-        let menu = HYMenuViewController()
+        let menu = HYMenuViewController.shared
         menu.setupLeft(left).setupCenter(nav).setupRight(right)
         window?.rootViewController = menu
         window?.makeKeyAndVisible()

@@ -42,6 +42,9 @@ import HYMenu
 ```
 HYMenuViewController Support Following
 ```Swift
+public protocol HYMenuViewControllerDelegate :NSObjectProtocol {
+    func HYMenuViewControllerMenuDid(open:Bool ,edges:SlideSide)
+}
         var menuSlideVelocity = 0.3
         var leftWidth : CGFloat = 150.0
         var rightWidth : CGFloat = 150.0

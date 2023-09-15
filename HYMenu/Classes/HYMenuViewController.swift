@@ -5,6 +5,10 @@
 //  Created by HENRY on 2022/2/8.
 //
 import UIKit
+public protocol HYMenuViewControllerDelegate :NSObjectProtocol {
+    func HYMenuViewControllerMenuDid(open:Bool ,edges:SlideSide)
+}
+
 public class HYMenuViewController :UIViewController{
     
     var leftViewLeadingConstraint :NSLayoutConstraint!
@@ -20,6 +24,8 @@ public class HYMenuViewController :UIViewController{
     var centerViewController : UIViewController? = nil
     
     var rightViewController : UIViewController? = nil
+    
+    public weak var delegate :HYMenuViewControllerDelegate?
     
     let mannger = HYMenuMannger()
     
@@ -193,6 +199,7 @@ public class HYMenuViewController :UIViewController{
             }
             break
         }
+        self.delegate?.HYMenuViewControllerMenuDid(open: true, edges: edges)
     }
     public func closeSideMenu(edges:SlideSide){
         switch edges {
@@ -223,5 +230,6 @@ public class HYMenuViewController :UIViewController{
             }
             break
         }
+        self.delegate?.HYMenuViewControllerMenuDid(open: false, edges: edges)
     }
 }

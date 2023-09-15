@@ -1,0 +1,6 @@
+framework module HYMenu {
+  umbrella header "HYMenu-umbrella.h"
+
+  export *
+  module * { export * }
+}

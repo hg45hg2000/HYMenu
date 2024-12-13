@@ -19,12 +19,38 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         window = UIWindow(frame: UIScreen.main.bounds)
         let nav = UINavigationController(rootViewController: ViewController())
         nav.view.backgroundColor = .blue
-        let left = UIViewController()
+        let left = MenuViewController(nibName: "MenuViewController", bundle: nil)
         left.view.backgroundColor = .brown
-        let right = UIViewController()
+        let right = MenuViewController(nibName: "MenuViewController", bundle: nil)
         right.view.backgroundColor = .red
         let menu = HYMenuViewController.shared
         menu.setupLeft(left).setupCenter(nav).setupRight(right)
+        left.selectedIndexPath = { indexPath in
+            switch indexPath.row {
+            case    0:
+                nav.view.backgroundColor = .white
+            case    1:
+                nav.view.backgroundColor = .green
+            case    2:
+                nav.view.backgroundColor = .yellow
+            default:
+                break
+            }
+            menu.closeSideMenu(edges: .left)
+        }
+        right.selectedIndexPath = { indexPath in
+            switch indexPath.row {
+            case    0:
+                nav.view.backgroundColor = .white
+            case    1:
+                nav.view.backgroundColor = .green
+            case    2:
+                nav.view.backgroundColor = .yellow
+            default:
+                break
+            }
+            menu.closeSideMenu(edges: .right)
+        }
         window?.rootViewController = menu
         window?.makeKeyAndVisible()
         return true

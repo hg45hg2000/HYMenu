@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		362BFAB9BBDA6CAAA718492412598A8E /* HYMenuMannger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2781F5E4FF81B29FA8935CA696420AD4 /* HYMenuMannger.swift */; };
-		3F97976A3B9A73E3C9EF3AA08DDA08B8 /* ReplaceMe.swift in Sources */ = {isa = PBXBuildFile; fileRef = 430451029166373942D2C7A4D427406F /* ReplaceMe.swift */; };
 		50611F15D22425F19C0EF82FEF4A5B3B /* HYMenu-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 8EC9850456C0319EEC604178CA9192F4 /* HYMenu-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		746C1EA0336F97278E894002B15ACFE3 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 73010CC983E3809BECEE5348DA1BB8C6 /* Foundation.framework */; };
 		9D0777D84EF6D4F888ED8B5280D842DB /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 73010CC983E3809BECEE5348DA1BB8C6 /* Foundation.framework */; };
@@ -41,7 +40,7 @@
 /* Begin PBXFileReference section */
 		006AC05339AF78CF15554348ABB46297 /* HYMenu-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "HYMenu-Info.plist"; sourceTree = "<group>"; };
 		07623B629AA9AC1F8E02BA13188CCABF /* Pods-HYMenu_Example-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-HYMenu_Example-frameworks.sh"; sourceTree = "<group>"; };
-		07E5F19935E4B89E1F5F15A6F7DB6CF3 /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; path = LICENSE; sourceTree = "<group>"; };
+		07E5F19935E4B89E1F5F15A6F7DB6CF3 /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
 		162FC4BDE30CB955A080F48ABBC2E083 /* Pods-HYMenu_Tests-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-HYMenu_Tests-acknowledgements.markdown"; sourceTree = "<group>"; };
 		1FD6447844FDAB8421A6784AB3779B67 /* Pods-HYMenu_Tests-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-HYMenu_Tests-acknowledgements.plist"; sourceTree = "<group>"; };
 		22D7B147FB90716AC7B04B1DFB3FFC9A /* HYMenu-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "HYMenu-prefix.pch"; sourceTree = "<group>"; };
@@ -50,24 +49,23 @@
 		339546705AAF1E6F08F60153C0A99307 /* HYMenuViewController.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = HYMenuViewController.swift; path = HYMenu/Classes/HYMenuViewController.swift; sourceTree = "<group>"; };
 		35AF8575B959BDB0BDCF132D7391CEE3 /* Pods-HYMenu_Tests-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-HYMenu_Tests-Info.plist"; sourceTree = "<group>"; };
 		3D05F90EBE1C78A0F7B80D679CCEA3EE /* Pods-HYMenu_Example-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-HYMenu_Example-acknowledgements.markdown"; sourceTree = "<group>"; };
-		430451029166373942D2C7A4D427406F /* ReplaceMe.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ReplaceMe.swift; path = HYMenu/Classes/ReplaceMe.swift; sourceTree = "<group>"; };
 		45CC05BA1E7533D6B99825EABC096FEE /* Pods-HYMenu_Example-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-HYMenu_Example-umbrella.h"; sourceTree = "<group>"; };
 		49FD1CC59C1018C0D6B2A8F4D5058C4A /* Pods-HYMenu_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-HYMenu_Example.release.xcconfig"; sourceTree = "<group>"; };
 		500890327BC4695A8FD855A79A4208A2 /* Pods-HYMenu_Tests-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-HYMenu_Tests-umbrella.h"; sourceTree = "<group>"; };
 		52926F2D497E5C35946DE48BB77C5A53 /* Pods-HYMenu_Example-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-HYMenu_Example-Info.plist"; sourceTree = "<group>"; };
-		58295B122BA28FD1F711B6AD38739808 /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; path = README.md; sourceTree = "<group>"; };
+		58295B122BA28FD1F711B6AD38739808 /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		5913FD173AD4EA1E4726E497D083EBDF /* Pods-HYMenu_Tests.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = "Pods-HYMenu_Tests.modulemap"; sourceTree = "<group>"; };
-		6D281BDCCC097740BA98230CFF833D30 /* Pods-HYMenu_Example */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = "Pods-HYMenu_Example"; path = Pods_HYMenu_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		6D281BDCCC097740BA98230CFF833D30 /* Pods_HYMenu_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_HYMenu_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		73010CC983E3809BECEE5348DA1BB8C6 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS14.0.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
 		8EC9850456C0319EEC604178CA9192F4 /* HYMenu-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "HYMenu-umbrella.h"; sourceTree = "<group>"; };
-		96E7C5517897E674FBA31BD15106E9AC /* HYMenu.podspec */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; lastKnownFileType = text; path = HYMenu.podspec; sourceTree = "<group>"; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
-		9D940727FF8FB9C785EB98E56350EF41 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; lastKnownFileType = text; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		96E7C5517897E674FBA31BD15106E9AC /* HYMenu.podspec */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; path = HYMenu.podspec; sourceTree = "<group>"; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		9D940727FF8FB9C785EB98E56350EF41 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		AECC5EABB201A78363B00AB2C0290064 /* HYMenu-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "HYMenu-dummy.m"; sourceTree = "<group>"; };
 		B17F53DA3725DAA0B0CE8E23D5070163 /* Pods-HYMenu_Example-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-HYMenu_Example-dummy.m"; sourceTree = "<group>"; };
-		B2E906A7A6D5405ACEE407213D2D2D83 /* Pods-HYMenu_Tests */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = "Pods-HYMenu_Tests"; path = Pods_HYMenu_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		B2E906A7A6D5405ACEE407213D2D2D83 /* Pods_HYMenu_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_HYMenu_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B8EC04C9D5BE15658B872E0A12BEE7F5 /* HYMenu.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = HYMenu.modulemap; sourceTree = "<group>"; };
 		C8C17A75E13B7FAFC493EEC36C6AABC4 /* Pods-HYMenu_Tests-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-HYMenu_Tests-dummy.m"; sourceTree = "<group>"; };
-		D585256D4FE19744D3826CFF6C369D98 /* HYMenu */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = HYMenu; path = HYMenu.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		D585256D4FE19744D3826CFF6C369D98 /* HYMenu.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = HYMenu.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		DF1BDDA18EB5C007F50E39A672EEB673 /* Pods-HYMenu_Example.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = "Pods-HYMenu_Example.modulemap"; sourceTree = "<group>"; };
 		E690B0FA401751B665BD661638A111C9 /* HYMenu.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = HYMenu.debug.xcconfig; sourceTree = "<group>"; };
 		E933CCBD9EA76C3BD24699CDFF2F5A2F /* HYMenu.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = HYMenu.release.xcconfig; sourceTree = "<group>"; };
@@ -109,7 +107,6 @@
 			children = (
 				2781F5E4FF81B29FA8935CA696420AD4 /* HYMenuMannger.swift */,
 				339546705AAF1E6F08F60153C0A99307 /* HYMenuViewController.swift */,
-				430451029166373942D2C7A4D427406F /* ReplaceMe.swift */,
 				45F3359CEF811578C40C5ED6E3CA3DA4 /* Pod */,
 				3A7B839FD9637B7BD32680DBCED7A154 /* Support Files */,
 			);
@@ -205,9 +202,9 @@
 		DD2652307D35F43F050EC22C0A4B21BC /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				D585256D4FE19744D3826CFF6C369D98 /* HYMenu */,
-				6D281BDCCC097740BA98230CFF833D30 /* Pods-HYMenu_Example */,
-				B2E906A7A6D5405ACEE407213D2D2D83 /* Pods-HYMenu_Tests */,
+				D585256D4FE19744D3826CFF6C369D98 /* HYMenu.framework */,
+				6D281BDCCC097740BA98230CFF833D30 /* Pods_HYMenu_Example.framework */,
+				B2E906A7A6D5405ACEE407213D2D2D83 /* Pods_HYMenu_Tests.framework */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -274,7 +271,7 @@
 			);
 			name = HYMenu;
 			productName = HYMenu;
-			productReference = D585256D4FE19744D3826CFF6C369D98 /* HYMenu */;
+			productReference = D585256D4FE19744D3826CFF6C369D98 /* HYMenu.framework */;
 			productType = "com.apple.product-type.framework";
 		};
 		884F70B4B6EB636E4E2D29A42E2238CD /* Pods-HYMenu_Example */ = {
@@ -293,7 +290,7 @@
 			);
 			name = "Pods-HYMenu_Example";
 			productName = Pods_HYMenu_Example;
-			productReference = 6D281BDCCC097740BA98230CFF833D30 /* Pods-HYMenu_Example */;
+			productReference = 6D281BDCCC097740BA98230CFF833D30 /* Pods_HYMenu_Example.framework */;
 			productType = "com.apple.product-type.framework";
 		};
 		8C4C85565C60AEB8F82E345A652BBE84 /* Pods-HYMenu_Tests */ = {
@@ -312,7 +309,7 @@
 			);
 			name = "Pods-HYMenu_Tests";
 			productName = Pods_HYMenu_Tests;
-			productReference = B2E906A7A6D5405ACEE407213D2D2D83 /* Pods-HYMenu_Tests */;
+			productReference = B2E906A7A6D5405ACEE407213D2D2D83 /* Pods_HYMenu_Tests.framework */;
 			productType = "com.apple.product-type.framework";
 		};
 /* End PBXNativeTarget section */
@@ -376,7 +373,6 @@
 				CED398C69FF2BE82B3675F82A23E7667 /* HYMenu-dummy.m in Sources */,
 				362BFAB9BBDA6CAAA718492412598A8E /* HYMenuMannger.swift in Sources */,
 				BFE84A16127EAFB4A74AFC969D82C1BD /* HYMenuViewController.swift in Sources */,
-				3F97976A3B9A73E3C9EF3AA08DDA08B8 /* ReplaceMe.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -694,8 +690,7 @@
 				MTL_FAST_MATH = YES;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				STRIP_INSTALLED_PRODUCT = NO;
-				SWIFT_COMPILATION_MODE = wholemodule;
-				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
 				SWIFT_VERSION = 5.0;
 				SYMROOT = "${SRCROOT}/../build";
 			};

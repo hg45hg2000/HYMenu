@@ -121,8 +121,8 @@ public class HYMenuViewController :UIViewController{
         addChild(leftViewController)
         view.addSubview(leftViewController.view)
         leftViewController.didMove(toParent: self)
-        leftViewController.view.frame = CGRect(x: -leftWidth, y: 0, width: leftWidth, height: view.frame.height)
         setupLeftMenuViewControllerLayout()
+        leftViewController.view.frame = CGRect(x: -leftWidth, y: 0, width: leftWidth, height: view.frame.height)
     }
     @objc func addRightViewController(){
         guard let rightViewController = rightViewController else {
